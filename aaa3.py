@@ -41,7 +41,7 @@ def generate_2d_gauss_matrix(weight_map,bbox):
 
 	
 def main():
-    JSON_PATH='/home/yzy/dataset/index-files/ucf-det-all-person-bbox-coordinate/ucf_bboxes_of_person_dict_5.json'
+    JSON_PATH='/home/yzy/dataset/index-files/ucf-det-all-person-bbox-coordinate/ucf_bboxes_of_person_dict_3.json'
     FRAME_PATH='/share/dataset/UCF101-frames-TSN'
     SAVE_PATH='/home/yzy/dataset/tmp'
     #¿¿json
