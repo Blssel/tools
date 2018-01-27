@@ -5,16 +5,19 @@ __author__='zhiyu yin'
 import numpy as np
 
 def cal_avg_bbox(bbox_list):
-    sum_bbox=0.0
-    for i in bbox_list:
+    sum_bbox=np.array([0.0, 0.0, 0.0, 0.0])
+    bbox_list=np.array(bbox_list)
+    for i in range(len(bbox_list)):
         sum_bbox+=bbox_list[i]
     avg_bbox=sum_bbox/len(bbox_list)
+    avg_bbox=avg_bbox.tolist()
     return avg_bbox
 
 def add_new_cluster(cluster_set,bbox,cluster_num):
     cluster_set['cluster_'+str(cluster_num)]={}
-    cluster_set['cluster_'+str(cluster_num)]['bboxes']=[].append(bbox)
-    cluster_set['cluster_'+str(cluster_num)]['avg_bbox']=cal_avg_bbox(cluster_set['cluster_'+str(cluster_num)][bboxes]) # 等于所有bbox各项平均值    
+    cluster_set['cluster_'+str(cluster_num)]['bboxes']=[]
+    cluster_set['cluster_'+str(cluster_num)]['bboxes'].append(bbox)
+    cluster_set['cluster_'+str(cluster_num)]['avg_bbox']=cal_avg_bbox(cluster_set['cluster_'+str(cluster_num)]['bboxes']) # 等于所有bbox各项平均值    
     return cluster_set
 '''
 def cal_overlap_area(avg_bbox,bbox):
@@ -51,35 +54,45 @@ def calcIOU(avg_bbox,bbox):
         union_square = (one_w * one_h) + (two_w * two_h) - inter_square  
   
         calcIOU = inter_square / union_square * 1.0  
-        print("calcIOU:", calcIOU)
+        #print("calcIOU:", calcIOU)
         return calcIOU
     else:  
-        print("No intersection!")
+        #print("No intersection!")
         return None
   
     return calcIOU
 
 def isMatch(avg_bbox,bbox):
     iou=calcIOU(avg_bbox,bbox)
-    if iou==None
-        return False
-    elif iou>=0.8:
-        return True
-    else 
-        return False
+    if iou==None:
+        return (False,None)
+    elif iou>=0.1:
+        return (True,iou)
+    else: 
+        return (False,None)
 def blongto(cluster_set,bbox):
     # 如果cluster_set为空
     if not cluster_set:
         return None
     # 否则与逐个类别的avg_bbox对比，满足IOU80%则返回类名，若无满足的，返回None
     else:
+        max_iou=-0.1
+        most_matched=None
         for i in cluster_set.keys():
-            if isMatch(cluster_set[i][avg_bbox],bbox):  #!!!!!!!!!这个方法很重要
-                return i
-        return None
+            ismatch=isMatch(cluster_set[i]['avg_bbox'],bbox)
+            if ismatch[0]:  #如果匹配，则选出最匹配的那个类返回
+                if ismatch[1]>max_iou:
+                    max_iou=ismatch[1]
+                    most_matched=i
+        if most_matched!= None:
+            return most_matched
+        else:
+            return None
 
 def insert_into_existing_cluster(cluster_set,bbox,cluster_name):
-    cluster_set[cluster_name]['bboxes']=cluster_set[cluster_name]['bboxes'].append(bbox)
+    cluster_set[cluster_name]['bboxes'].append(bbox)
+    # 顺便还要更新avg_bbox
+    cluster_set[cluster_name]['avg_bbox']=cal_avg_bbox(cluster_set[cluster_name]['bboxes']) 
     return cluster_set
 
 # for each vid 先判断将这些bbox进行聚类，（IOU阈值设为80%）

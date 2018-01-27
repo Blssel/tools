@@ -13,8 +13,8 @@ Some scripts written or used in my daliy life
 for each bbox:
     if clusters_set==null:
         将该bbox作为第一个类别
-    elif bbox dont blong to any cluster:
-        将该bbox作为一个新的类别，并追加到类集合clusters_set中（类集合要注明该img名字，是个字典集合）
+    elif bbox dont blong to any cluster: # 以IOU作为判断标准，阈值设为80%
+        将该bbox作为一个新的类别，并追加到类集合clusters_set中（类集合只需存放bbox即可，无需存对应img）
    
     else:
         for item in clusters_set:

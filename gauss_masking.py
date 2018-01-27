@@ -8,10 +8,10 @@ import os
 def _cal_deta(bbox):
     bbox_size=(bbox[2]-bbox[0])*(bbox[3]-bbox[1])
     #print bbox_size
-    k=15.0/3600.0
+    k=50.0/3600.0
     deta=k*bbox_size
     return deta	
-# ¿
+# ¿¿¿map¿¿¿
 def _normalize(weight_map):
     map_min, map_max=weight_map.min(), weight_map.max()
     weight_map=(weight_map-map_min)/(map_max-map_min)
@@ -37,6 +37,8 @@ def generate_2d_gauss_matrix(weight_map,bbox):
             weight_map_tmp[i][j]=pow(math.e,-c/(2*pow(deta,2)))
     # ¿weight_map_tmp¿¿¿weight_map¿¿¿¿¿¿weight_map
     weight_map=_normalize(weight_map+weight_map_tmp)
+    weight_map[(weight_map)<0.4]=0
+#    weight_map=weight_map*1.2
     return weight_map
 
 	
