@@ -4,9 +4,9 @@ import os
 import numpy as np
 import cv2
 
-JSON_PATH='/home/yzy/workspace/Faster-RCNN_TF/ucf_bbox_of_person_dict.json'
+JSON_PATH='/home/yzy/dataset/index-files/ucf-det-one-person-bbox-coordinate/ucf_bbox_of_person_dict.json'
 FRAME_PATH='/share/dataset/UCF101-frames-TSN'
-SAVE_PATH='/home/yzy/dataset/ucf-det2'
+SAVE_PATH='/home/yzy/dataset/cnm'
 #读取json
 with open(JSON_PATH,'r') as f:
     vid_dict=json.load(f)
@@ -30,4 +30,3 @@ for vid in vid_dict.keys():
         if not os.path.exists(os.path.join(SAVE_PATH,vid)):
             os.mkdir(os.path.join(SAVE_PATH,vid))
         cv2.imwrite(os.path.join(SAVE_PATH,vid,img),tar_img)
-
