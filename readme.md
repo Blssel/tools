@@ -34,17 +34,17 @@ for each bbox:
 
 ### 准备包含视频ID和URL的文件
 
-最终视频的存放方式是：以视频ID最为视频名，所有视频都存放在同一个文件夹下，不区分类别。比如activitynet数据集，是以.json文件方式提供ID和URL。
+最终视频的存放方式是：以视频ID为视频名，拓展名为.mp4，所有视频都存放在同一个文件夹下，不区分类别。比如activitynet数据集，是以.json文件方式提供ID和URL。
 
 ### 运行download.py文件
-```python
+```shell
 cd download
 python download.py --dataset DATASET_NAME JSON_PATH FAILED_PATH --num_thread NUM_THREAD 
-视频就保存在download.py所在文件夹。其中，DATASET_NAME, JSON_PATH，FAILED_PATH和NUM_THREAD分别表示所下载的数据集名称(在activity_net kinetics ava中选择)，json文件的存放位置，下载失败信息的保存位置，线程数。
 ```
+视频就保存在download.py所在文件夹。其中，DATASET_NAME, JSON_PATH，FAILED_PATH和NUM_THREAD分别表示所下载的数据集名称(在activity_net kinetics ava中选择)，json文件的存放位置，下载失败信息的保存位置，线程数。
 
 比如
-```python
-python download.py --dataset activity_net ../activity_net.v1-3.min.json activity_test.txt --num_thread 1
+```shell
+python download.py --dataset activity_net ../activity_net.v1-3.min.json activity_test_failed.txt --num_thread 10
 ```
 
