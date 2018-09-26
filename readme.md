@@ -50,3 +50,14 @@ python download.py --dataset kinetics ../kinetics_url/kinetics_400/kinetics_trai
 python download.py --dataset activity_net ../activitynet_url/activity_net.v1-3.min.json activity_test_failed.txt --num_thread 10
 ```
 
+## 提取视频帧脚本
+存放于'vid2img'目录，功能是将视频的每一帧抽出，存成类似于image-000001.jpeg(从1开始)的帧，方便做实验使用。
+### 脚本运行
+```shell
+python vid2frames.py src_path dst_path
+```
+比如：
+```shell
+python vid2frames.py /data/videos /data/frames
+```
+
