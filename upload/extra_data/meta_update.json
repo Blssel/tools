@@ -1,0 +1,33 @@
+{
+  "name": "yzy12", 
+  "dataType": "VIDEO", 
+  "_id": null, 
+  "description": "dataset for test", 
+  "docsUrl": "", 
+  "size": 8, 
+  "tags": [
+    "视频", 
+    "多标签"
+  ], 
+  "version": "latest",
+  "public": true, 
+  "dataPublic": true, 
+  "tagPublic": true, 
+  "originId": null, 
+  "owner": {
+    "_id": null, 
+    "email": "yinzhiyu_sx@qiyi.com", 
+    "icon": null, 
+    "name": "yinzhiyu_sx"
+  }, 
+  "status": 1, 
+  "stats": [
+    { "name": "numOfDownloads", "displayName": "下载量", "value": 0 },
+    { "name": "numOfVisits", "displayName": "访问量", "value": 0 },
+    { "name": "totalSize", "displayName": "数据量", "value": 8 },
+    { "name": "trainSize", "displayName": "训练集数量", "value": 6 },
+    { "name": "testSize", "displayName": "测试集数量", "value": 2 }
+  ], 
+  "createdAt": "2018-09-25 21:00:00", 
+  "updatedAt": "2018-09-25 22:00:00"
+}
