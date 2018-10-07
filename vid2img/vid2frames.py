@@ -17,18 +17,18 @@ if not os.path.exists(base_path_to_vids):
 num_vids = 0
 for _, _, file_list in os.walk(base_path_to_vids):
   num_vids+=len(file_list)
-print '%d videos found.'%num_vids
+print('%d videos found.'%num_vids)
 
 count=1
 for cur_location, dir_names, file_names in os.walk(base_path_to_vids):
   if not file_names:
     continue
   for vid_name in file_names:
-    print 'Extracting %dth vid'%count
+    print('Extracting %dth vid'%count)
     path_to_vid = os.path.join(cur_location, vid_name)
     cap = cv2.VideoCapture(path_to_vid)
     num_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-    print '%d frames in total'%num_frames
+    print('%d frames in total'%num_frames)
     for i in range(num_frames):
       ret, frame = cap.read()
       if ret == False:
