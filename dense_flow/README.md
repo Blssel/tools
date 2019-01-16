@@ -1,3 +1,20 @@
+# 使用说明
+切换至cuda8.0 有时候source ~/.bashrc会不生效
+执行build_of.py
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Extracting dense flow field given a video.
 
 #### Depencies:
