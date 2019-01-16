@@ -1,0 +1,4 @@
+  File "build_of.py", line 29
+    print '{} done'.format(vid_name)
+                  ^
+SyntaxError: invalid syntax
